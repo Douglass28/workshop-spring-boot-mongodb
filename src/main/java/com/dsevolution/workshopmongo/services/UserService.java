@@ -16,7 +16,7 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
-    public List<User> findAll(){
+    public List<User> findAll() {
         return repository.findAll();
     }
 
@@ -25,11 +25,16 @@ public class UserService {
         return obj.orElseThrow(() -> new ObjectNotFoundException("Object not foud"));
     }
 
-    public User insert(User obj){
+    public User insert(User obj) {
         return repository.insert(obj);
     }
 
-    public User fromDTO(UserDTO objdto){
+    public void deleteById(String id) {
+        findById(id);
+        repository.deleteById(id);
+    }
+
+    public User fromDTO(UserDTO objdto) {
         return new User(objdto.getId(), objdto.getName(), objdto.getEmail());
     }
 }
