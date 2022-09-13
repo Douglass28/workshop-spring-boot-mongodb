@@ -1,5 +1,6 @@
 package com.dsevolution.workshopmongo.config;
 
+import com.dsevolution.workshopmongo.dto.AuthorDTO;
 import com.dsevolution.workshopmongo.entities.Post;
 import com.dsevolution.workshopmongo.entities.User;
 import com.dsevolution.workshopmongo.repository.PostRepository;
@@ -37,8 +38,8 @@ public class Instantiation implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
 
-        Post post1 = new Post(null, sdf.parse("13/09/2022"), "partiu viajem", "vou viajar para são paulo", maria);
-        Post post2 = new Post(null, sdf.parse("15/09/2022"), "bom dia", "acordei feliz", maria);
+        Post post1 = new Post(null, sdf.parse("13/09/2022"), "partiu viajem", "vou viajar para são paulo",new AuthorDTO(maria));
+        Post post2 = new Post(null, sdf.parse("15/09/2022"), "bom dia", "acordei feliz", new AuthorDTO(maria));
 
         postRepository.saveAll(Arrays.asList(post1, post2));
 
