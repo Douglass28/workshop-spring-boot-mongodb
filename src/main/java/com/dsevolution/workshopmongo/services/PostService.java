@@ -6,6 +6,7 @@ import com.dsevolution.workshopmongo.services.exeption.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +26,13 @@ public class PostService {
         return obj.orElseThrow(() -> new ObjectNotFoundException("post não existe!"));
     }
 
-    public List<Post> findByTitle(String text){
+    public List<Post> findByTitle(String text) {
         return repository.searchTitle(text);
     }
+
+    public List<Post> fullSearch(String text, Date minDate, Date maxdate){
+        maxdate = new Date(maxdate.getTime() + 24 * 60 * 60 * 1000);
+        return repository.fullsearch(text, minDate, maxdate);
+    }
 }
+
